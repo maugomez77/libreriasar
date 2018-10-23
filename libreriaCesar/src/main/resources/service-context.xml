@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+        
+    <bean id="loginMGR" class="mx.com.libreria.manager.LoginMGR">
+        <property name="baseDao" ref="baseDao"/>
+    </bean>
+    
+    <bean id="productMGR" class="mx.com.libreria.manager.ProductMGR">
+        <property name="baseDao" ref="baseDao"/>
+    </bean>
+
+    <bean id="catalogoMGR" class="mx.com.libreria.manager.CatalogMGR">
+        <property name="baseDao" ref="baseDao"/>
+    </bean>
+
+    <bean id="inventarioMGR" class="mx.com.libreria.manager.InventarioMGR">
+        <property name="baseDao" ref="baseDao"/>
+        <property name="sessionMGR" ref="sessionMGR"/>
+    </bean>
+
+    <bean id="remisionesMGR" class="mx.com.libreria.manager.RemisionesMGR">
+        <property name="baseDao" ref="baseDao"/>
+        <property name="sessionMGR" ref="sessionMGR"/>
+    </bean>
+    
+    <bean id="gastosMGR" class="mx.com.libreria.manager.GastosMGR">
+        <property name="baseDao" ref="baseDao"/>
+        <property name="sessionMGR" ref="sessionMGR"/>
+    </bean>
+    
+    <bean id="reportesMGR" class="mx.com.libreria.manager.ReportesMGR">
+        <property name="baseDao" ref="baseDao"/>
+        <property name="sessionMGR" ref="sessionMGR"/>
+    </bean>
+
+    <bean id="inventarioHistoricoMGR" class="mx.com.libreria.manager.InventarioHistoricoMGR">
+        <property name="baseDao" ref="baseDao"/>
+        <property name="sessionMGR" ref="sessionMGR"/>
+    </bean>
+    
+    <bean id="suscripcionMGR" class="mx.com.libreria.manager.SuscripcionMGR">
+        <property name="baseDao" ref="baseDao"/>
+        <property name="sessionMGR" ref="sessionMGR"/>
+    </bean>
+    
+    <bean id="ventaEspecialMGR" class="mx.com.libreria.manager.VentaEspecialMGR">
+        <property name="baseDao" ref="baseDao"/>
+        <property name="sessionMGR" ref="sessionMGR"/>
+    </bean>
+                     
+    <bean id="sessionMGR" class="mx.com.libreria.manager.SessionMGR"/>
+        
+</beans>

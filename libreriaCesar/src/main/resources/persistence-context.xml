@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">                	   
+        <property name="annotatedClasses">
+            <list>
+            	<value>mx.com.libreria.model.Abono</value>
+            	<value>mx.com.libreria.model.Cliente</value>
+            	<value>mx.com.libreria.model.Compras</value>
+            	<value>mx.com.libreria.model.Devolucion</value>
+            	<value>mx.com.libreria.model.Empleado</value>
+            	<value>mx.com.libreria.model.Gastos</value>
+            	<value>mx.com.libreria.model.InventarioActual</value>
+            	<value>mx.com.libreria.model.InventarioHistorico</value>            	
+                <value>mx.com.libreria.model.Producto</value>
+                <value>mx.com.libreria.model.Proveedor</value>
+                <value>mx.com.libreria.model.Remision</value>
+                <value>mx.com.libreria.model.SnapShotInventarioHistorico</value>
+                <value>mx.com.libreria.model.Suscripcion</value>
+                <value>mx.com.libreria.model.TipoGasto</value>                               
+                <value>mx.com.libreria.model.VentaEspecial</value>
+                
+                <value>mx.com.libreria.model.login.Usuario</value>
+                <value>mx.com.libreria.model.login.Rol</value>
+                                
+            </list>
+        </property>
+                
+        <property name="hibernateProperties">
+            <props>
+                <!-- <prop key="hibernate.show_sql">true</prop> -->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>                
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.connection.pool_size">10</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/libreria</prop>
+                <prop key="hibernate.connection.username">root</prop>
+                <prop key="hibernate.connection.password"></prop>
+                <prop key="hibernate.connection.autocommit">true</prop>                
+                <prop key="hibernate.jdbc.batch_size">0</prop>
+            </props>                                               
+        </property>
+        
+    </bean>        
+    
+    <bean id="baseDao" class="mx.com.libreria.implementacion.persistencia.dao.BaseDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
+</beans>

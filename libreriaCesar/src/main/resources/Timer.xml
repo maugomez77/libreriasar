@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+<!-- bean id="testTimer" class="org.springframework.scheduling.quartz.JobDetailBean">
+  <property name="jobClass" value="bean.TestTimer" />
+ </bean-->
+
+ <!-- bean id="timerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+  <property name="jobDetail">
+   <ref bean="testTimer" />
+  </property-->
+  <!-- property name="cronExpression" value="0 * * * * ?" /-->
+  <!-- property name="cronExpression" value="0/10 * * * * ?" />
+ </bean-->
+ 
+ <!-- bean id="TimerTaskFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+  <property name="triggers">
+   <list>
+    <ref bean="timerTrigger" />
+   </list>
+  </property>
+ </bean-->
+ 
+ <bean name="exampleJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+  <property name="jobClass" value="mx.com.libreria.timer.ExampleJob" />
+  <property name="jobDataAsMap">
+    <map>
+      <entry key="timeout" value="1" />
+    </map>
+  </property>
+ </bean>
+ 
+ 
+ <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <property name="jobDetail" ref="exampleJob" />
+    <!--property name="cronExpression" value="0/10 * * * * ?" /-->
+    <!-- Cada 1 hr de 8:00 a 21:00 de Lunes a Viernes -->
+    <!-- property name="cronExpression" value="1 * * * * SUN-SAT" /-->
+      <!-- property name="cronExpression" value="0 * * * * ?" /-->
+      
+      <!-- cada 10 segundos -->
+      <!-- <property name="cronExpression" value="0/10 * * * * ?" /> -->
+      
+      <!-- Ayuda Util: http://www.linuxtotal.com.mx/index.php?cont=info_admon_006 -->
+      
+      <!-- cada hora -->
+      <!--  esta madre cuenta desde los segundos, luego minutos, luego horas, y asi -->
+      <!--  para tenerlo muy en cuenta, alguna modificación al cron tab de la pagina de linux antes mencionada -->
+      <property name="cronExpression" value="01 01 * * * ?" />
+      
+ </bean>
+  
+ 
+ <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    <property name="triggers">
+        <list>
+            <ref local="cronTrigger" />
+            <!-- ref bean="simpleTrigger" /-->
+        </list>
+    </property>
+    <property name="jobFactory" ref="springBeanJobFactory" />
+ </bean>
+ 
+ <bean id="springBeanJobFactory" class="org.springframework.scheduling.quartz.SpringBeanJobFactory" />
+
+</beans>
